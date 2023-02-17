@@ -1,0 +1,45 @@
+var canvas = document.getElementById("gameCanvas");
+var ctx = canvas.getContext("2d");
+
+var frog = {
+	x: 50,
+	y: 50,
+	width: 50,
+	height: 50,
+	color: "#00FF00"
+};
+
+var elephant = {
+	x: 200,
+	y: 200,
+	width: 100,
+	height: 100,
+	color: "#808080"
+};
+
+function drawFrog() {
+	ctx.fillStyle = frog.color;
+	ctx.fillRect(frog.x, frog.y, frog.width, frog.height);
+}
+
+function drawElephant() {
+	ctx.fillStyle = elephant.color;
+	ctx.fillRect(elephant.x, elephant.y, elephant.width, elephant.height);
+}
+
+function update() {
+	// Move frog and elephant
+	frog.x += 1;
+	elephant.y -= 1;
+	
+	// Redraw canvas
+	ctx.clearRect(0, 0, canvas.width, canvas.height);
+	drawFrog();
+	drawElephant();
+	
+	// Call update again after 10 milliseconds
+	setTimeout(update, 10);
+}
+
+// Call update to start the game loop
+update();
